@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">NumbersApp</string>
+    <string name="random">Random</string>
+    <string name="fact">Fact</string>
+    <string name="math">Math</string>
+    <string name="trivia">Trivia</string>
+    <string name="date">Date</string>
+    <string name="year">Year</string>
+
+    <string name="home">Home</string>
+    <string name="setting">Setting</string>
+    <string name="like">Like</string>
 </resources>

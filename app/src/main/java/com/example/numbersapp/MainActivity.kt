@@ -1,7 +1,6 @@
 package com.example.numbersapp
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -9,12 +8,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.example.numbersapp.repository.FactRepository
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.numbersapp.ui.screens.Home
+import com.example.numbersapp.ui.screens.Routes
+import com.example.numbersapp.ui.screens.bottomBar.BottomBar
+import com.example.numbersapp.ui.screens.like.Like
+import com.example.numbersapp.ui.screens.settings.Settings
 import com.example.numbersapp.ui.theme.NumbersAppTheme
-import com.example.numbersapp.ui.view.Main
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,17 +24,28 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             NumbersAppTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Main(modifier = Modifier.padding(innerPadding))
+
+                val navController = rememberNavController()
+
+                Scaffold(
+                    modifier = Modifier.fillMaxSize(),
+                    bottomBar = { BottomBar(navController) }
+                ) { innerPadding ->
+
+                    NavHost(navController = navController, startDestination = Routes.Home.route) {
+                        composable(Routes.Home.route) {
+                            Home(modifier = Modifier.padding(innerPadding))
+                        }
+                        composable(Routes.Like.route) {
+                            Like(modifier = Modifier.padding(innerPadding))
+                        }
+                        composable(Routes.Settings.route) {
+                            Settings(modifier = Modifier.padding(innerPadding))
+                        }
+                    }
+
                 }
             }
-        }
-
-        val fact = FactRepository()
-        val myCoroutineScope = CoroutineScope(Dispatchers.Main)
-
-        myCoroutineScope.launch {
-            Log.d("result", fact.getMathFact(12).toString())
         }
 
     }
