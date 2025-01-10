@@ -39,8 +39,8 @@ import com.example.numbersapp.ui.views.DynamicItemContainer
 fun BottomBar(navController: NavController) {
     val bottomBarItems = listOf(
         BottomBarItem(Routes.Home.route, R.string.home, Icons.Default.Home),
-        BottomBarItem(Routes.Settings.route, R.string.setting, Icons.Default.Settings),
-        BottomBarItem(Routes.Like.route, R.string.like, Icons.Default.FavoriteBorder)
+        BottomBarItem(Routes.Like.route, R.string.like, Icons.Default.FavoriteBorder),
+        BottomBarItem(Routes.Settings.route, R.string.setting, Icons.Default.Settings)
     )
 
     // Состояние для текущего маршрута
@@ -111,5 +111,6 @@ fun BottomBarItem(bottomItem: BottomBarItem, isSelected: Boolean, modifier: Modi
                 fontWeight = FontWeight.Medium,
                 modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically)
             )
+
     }
 }

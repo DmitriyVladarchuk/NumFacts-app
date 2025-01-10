@@ -13,8 +13,12 @@ private const val TAG_FACT_REPOSITORY = "com.example.numbersapp.repository"
 
 class FactRepository(private val retrofitClient: RetrofitClient = RetrofitClient) {
 
+    suspend fun getRandomFact(typeFact: TypeFact) : Fact? {
+        return responseApiFact(retrofitClient.numbersAPI.getRandomFact(typeFact.type))
+    }
+
     suspend fun getTriviaFact(number: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(number, TypeFact.TRIVIA.type))
+        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(number, TypeFact.TRIVIA))
     }
 
     suspend fun getDateFact(month: Int, year: Int): Fact? {
@@ -22,11 +26,11 @@ class FactRepository(private val retrofitClient: RetrofitClient = RetrofitClient
     }
 
     suspend fun getYearFact(year: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(year, TypeFact.YEAR.type))
+        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(year, TypeFact.YEAR))
     }
 
     suspend fun getMathFact(number: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(number, TypeFact.MATH.type))
+        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(number, TypeFact.MATH))
     }
 
     private suspend fun responseApiFact(call: Call<Fact>): Fact? {
