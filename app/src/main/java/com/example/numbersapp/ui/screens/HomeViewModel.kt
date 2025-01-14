@@ -8,13 +8,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.numbersapp.models.Fact
 import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.repository.DatabaseRepository
 import com.example.numbersapp.repository.FactRepository
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class HomeViewModel(private val repository: FactRepository = FactRepository()) : ViewModel() {
+class HomeViewModel(
+    private val repository: FactRepository = FactRepository(),
+    private val databaseRepository: DatabaseRepository = DatabaseRepository()
+) : ViewModel() {
 
     private val _facts = mutableStateListOf<Fact?>()
-    val facts get() = _facts
+    val facts: List<Fact?> get() = _facts
 
     private var _currentTypeFact by mutableStateOf(TypeFact.MATH)
     val currentTypeFact get() = _currentTypeFact
@@ -35,8 +40,39 @@ class HomeViewModel(private val repository: FactRepository = FactRepository()) :
     fun loadNextFact() {
         viewModelScope.launch {
             val nextFact = repository.getRandomFact(_currentTypeFact)
-            _facts.add(nextFact)
+            nextFact?.let {
+                it.isSaved = databaseRepository.getAllFacts().first().any { savedFact ->
+                    savedFact.text == it.text
+                }
+                _facts.add(it)
+            }
         }
     }
 
+    fun updateFactSavedStatus(fact: Fact) {
+        if (fact.isSaved) deleteFact(fact)
+        else saveFact(fact)
+    }
+
+    private fun saveFact(fact: Fact) {
+        viewModelScope.launch {
+            databaseRepository.saveFact(fact)
+            val updatedFact = fact.copy(isSaved = true)
+            val index = _facts.indexOf(fact)
+            if (index != -1) {
+                _facts[index] = updatedFact
+            }
+        }
+    }
+
+    private fun deleteFact(fact: Fact) {
+        viewModelScope.launch {
+            databaseRepository.deleteFact(fact)
+            val updatedFact = fact.copy(isSaved = false)
+            val index = _facts.indexOf(fact)
+            if (index != -1) {
+                _facts[index] = updatedFact
+            }
+        }
+    }
 }

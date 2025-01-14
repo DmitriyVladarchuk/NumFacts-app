@@ -14,7 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.numbersapp.ui.screens.Home
 import com.example.numbersapp.ui.screens.Routes
 import com.example.numbersapp.ui.screens.bottomBar.BottomBar
-import com.example.numbersapp.ui.screens.like.Like
+import com.example.numbersapp.ui.screens.like.Favorite
 import com.example.numbersapp.ui.screens.settings.Settings
 import com.example.numbersapp.ui.theme.NumbersAppTheme
 
@@ -36,8 +36,8 @@ class MainActivity : ComponentActivity() {
                         composable(Routes.Home.route) {
                             Home(modifier = Modifier.padding(innerPadding))
                         }
-                        composable(Routes.Like.route) {
-                            Like(modifier = Modifier.padding(innerPadding))
+                        composable(Routes.Favorite.route) {
+                            Favorite(modifier = Modifier.padding(innerPadding))
                         }
                         composable(Routes.Settings.route) {
                             Settings(modifier = Modifier.padding(innerPadding))

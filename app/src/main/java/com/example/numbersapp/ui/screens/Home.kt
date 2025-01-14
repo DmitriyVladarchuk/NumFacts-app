@@ -57,7 +57,7 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) 
             fontWeight = FontWeight.Bold,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
-        // TypeFactList(viewModel.currentTypeFact, viewModel)
+
         DynamicItemContainer(
             items = TypeFact.entries.toList(),
             selectedItem = viewModel.currentTypeFact,
@@ -73,29 +73,35 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) 
                 )
             }
         )
-        HeaderHorizontalPager(viewModel)
+        FactHorizontalPager(
+            facts = viewModel.facts,
+            loadFact = { viewModel.loadNextFact() },
+            clickableItem = { fact: Fact ->  viewModel.updateFactSavedStatus(fact) }
+        )
     }
 }
 
 @Composable
-private fun HeaderHorizontalPager(viewModel: HomeViewModel) {
-    val pagerState = rememberPagerState(pageCount = { viewModel.facts.size })
+private fun FactHorizontalPager(facts: List<Fact?>, loadFact: () -> Unit, clickableItem: (fact: Fact) -> Unit) {
+    val pagerState = rememberPagerState(pageCount = { facts.size })
 
     HorizontalPager(
         state = pagerState,
         beyondViewportPageCount = 2,
     ) { page ->
-        if (page == viewModel.facts.size - 1) {
-            viewModel.loadNextFact()
+        if (page == facts.size - 1) {
+            loadFact()
         }
 
-        viewModel.facts.getOrNull(page)?.let { ItemFact(it) }
+        facts.getOrNull(page)?.let { ItemFact(it) {
+            clickableItem(it)
+        } }
     }
 }
 
 
 @Composable
-private fun ItemFact(fact: Fact) {
+private fun ItemFact(fact: Fact, clickableItem: () -> Unit) {
     Card(
         colors = CardDefaults.cardColors(containerColor = container),
         shape = RoundedCornerShape(20.dp),
@@ -103,6 +109,7 @@ private fun ItemFact(fact: Fact) {
             .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
             .fillMaxWidth()
             .fillMaxHeight(0.7f)
+            .clickable { clickableItem() }
     ) {
         Column(
             modifier = Modifier.fillMaxWidth().padding(24.dp),
@@ -125,7 +132,7 @@ private fun ItemFact(fact: Fact) {
                 Icon(
                     imageVector = Icons.Sharp.Star,
                     modifier = Modifier.size(32.dp),
-                    tint = yellow,
+                    tint = if(fact.isSaved) yellow else Color.Black,
                     contentDescription = ""
                 )
             }
@@ -140,28 +147,6 @@ private fun ItemFact(fact: Fact) {
         }
     }
 }
-
-//@Composable
-//private fun TypeFactList(currentTypeFact: TypeFact, viewModel: HomeViewModel) {
-//    Row(
-//        modifier = Modifier
-//            .padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 20.dp)
-//            .wrapContentHeight()
-//            .fillMaxWidth()
-//            .clip(CircleShape)
-//            .background(container),
-//    ) {
-//        TypeFact.entries.forEach { type ->
-//            ItemTypeFact(
-//                type,
-//                if (type == currentTypeFact) item else container,
-//                Modifier.weight(1f)
-//            ) {
-//                viewModel.changeTypeFact(type)
-//            }
-//        }
-//    }
-//}
 
 @Composable
 private fun ItemTypeFact(typeFact: TypeFact, isSelected: Boolean, modifier: Modifier, changeType: () -> Unit) {
