@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -16,14 +17,15 @@ import com.example.numbersapp.ui.screens.Routes
 import com.example.numbersapp.ui.screens.bottomBar.BottomBar
 import com.example.numbersapp.ui.screens.like.Favorite
 import com.example.numbersapp.ui.screens.settings.Settings
-import com.example.numbersapp.ui.theme.NumbersAppTheme
+import com.example.numbersapp.ui.theme.CustomNumbersAppTheme
+import com.example.numbersapp.ui.theme.CustomTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            NumbersAppTheme {
+            CustomNumbersAppTheme {
 
                 val navController = rememberNavController()
 
@@ -34,13 +36,13 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController = navController, startDestination = Routes.Home.route) {
                         composable(Routes.Home.route) {
-                            Home(modifier = Modifier.padding(innerPadding))
+                            Home(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding))
                         }
                         composable(Routes.Favorite.route) {
-                            Favorite(modifier = Modifier.padding(innerPadding))
+                            Favorite(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding))
                         }
                         composable(Routes.Settings.route) {
-                            Settings(modifier = Modifier.padding(innerPadding))
+                            Settings(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding))
                         }
                     }
 

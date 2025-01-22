@@ -23,16 +23,19 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbersapp.Utils.Utils
 import com.example.numbersapp.models.TypeFact
-import com.example.numbersapp.ui.theme.container
-import com.example.numbersapp.ui.theme.item
+import com.example.numbersapp.ui.theme.CustomTheme
+import com.example.numbersapp.ui.theme.current
 
 @Composable
 fun ItemTypeFact(typeFact: TypeFact, isSelected: Boolean, modifier: Modifier = Modifier, changeType: () -> Unit) {
-    val animateColor = remember { Animatable(if (isSelected) item else container) }
+    val currentColor = current
+    val containerColor = CustomTheme.colors.container
+
+    val animateColor = remember { Animatable(containerColor) }
 
     LaunchedEffect(isSelected) {
         animateColor.animateTo(
-            targetValue = if (isSelected) item else container,
+            targetValue = if (isSelected) currentColor else containerColor,
             animationSpec = tween(durationMillis = 700)
         )
     }

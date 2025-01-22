@@ -32,7 +32,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -40,8 +39,11 @@ import com.example.numbersapp.R
 import com.example.numbersapp.Utils.Utils
 import com.example.numbersapp.models.Fact
 import com.example.numbersapp.models.TypeFact
-import com.example.numbersapp.ui.theme.container
-import com.example.numbersapp.ui.theme.item
+import com.example.numbersapp.ui.theme.CustomTheme
+import com.example.numbersapp.ui.theme.bodyTextStyle
+import com.example.numbersapp.ui.theme.current
+import com.example.numbersapp.ui.theme.subtitleStyle
+import com.example.numbersapp.ui.theme.titleStyle
 import com.example.numbersapp.ui.theme.yellow
 import com.example.numbersapp.ui.views.DynamicItemContainer
 
@@ -53,8 +55,7 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) 
     ) {
         Text(
             text = "${stringResource(R.string.random)} ${stringResource(R.string.fact)}",
-            fontSize = 24.sp,
-            fontWeight = FontWeight.Bold,
+            style = titleStyle(),
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
 
@@ -103,7 +104,7 @@ private fun FactHorizontalPager(facts: List<Fact?>, loadFact: () -> Unit, clicka
 @Composable
 private fun ItemFact(fact: Fact, clickableItem: () -> Unit) {
     Card(
-        colors = CardDefaults.cardColors(containerColor = container),
+        colors = CardDefaults.cardColors(containerColor = CustomTheme.colors.container),
         shape = RoundedCornerShape(20.dp),
         modifier = Modifier
             .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
@@ -120,9 +121,7 @@ private fun ItemFact(fact: Fact, clickableItem: () -> Unit) {
             ) {
                 Text(
                     text = "${stringResource(Utils.getStringResourceIdForFactType(fact.type))} ${stringResource(R.string.fact)} ",
-                    textAlign = TextAlign.Center,
-                    fontSize = 24.sp,
-                    fontWeight = FontWeight.Medium,
+                    style = subtitleStyle(),
                     modifier = Modifier
                         .align(Alignment.CenterVertically)
                         .weight(1f)
@@ -140,8 +139,7 @@ private fun ItemFact(fact: Fact, clickableItem: () -> Unit) {
 
             Text(
                 text = fact.text,
-                fontSize = 18.sp,
-                textAlign = TextAlign.Center,
+                style = bodyTextStyle(),
                 modifier = Modifier.fillMaxSize().padding(top = 42.dp)
             )
         }
@@ -150,11 +148,14 @@ private fun ItemFact(fact: Fact, clickableItem: () -> Unit) {
 
 @Composable
 private fun ItemTypeFact(typeFact: TypeFact, isSelected: Boolean, modifier: Modifier, changeType: () -> Unit) {
-    val animateColor = remember { Animatable(if (isSelected) item else container) }
+    val currentColor = current
+    val containerColor = CustomTheme.colors.container
+
+    val animateColor = remember { Animatable(containerColor) }
 
     LaunchedEffect(isSelected) {
         animateColor.animateTo(
-            targetValue = if (isSelected) item else container,
+            targetValue = if (isSelected) currentColor else containerColor,
             animationSpec = tween(durationMillis = 700)
         )
     }

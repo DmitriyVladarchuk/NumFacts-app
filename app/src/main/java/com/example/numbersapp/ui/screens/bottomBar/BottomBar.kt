@@ -25,14 +25,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.numbersapp.R
 import com.example.numbersapp.ui.screens.Routes
-import com.example.numbersapp.ui.theme.container
-import com.example.numbersapp.ui.theme.item
+import com.example.numbersapp.ui.theme.CustomTheme
+import com.example.numbersapp.ui.theme.captionStyle
+import com.example.numbersapp.ui.theme.current
 import com.example.numbersapp.ui.views.DynamicItemContainer
 
 @Composable
@@ -77,11 +76,14 @@ fun BottomBar(navController: NavController) {
 
 @Composable
 fun BottomBarItem(bottomItem: BottomBarItem, isSelected: Boolean, modifier: Modifier, changeType: () -> Unit) {
-    val animateColor = remember { Animatable(if (isSelected) item else container) }
+    val currentColor = current
+    val containerColor = CustomTheme.colors.container
+
+    val animateColor = remember { Animatable(containerColor) }
 
     LaunchedEffect(isSelected) {
         animateColor.animateTo(
-            targetValue = if (isSelected) item else container,
+            targetValue = if (isSelected) currentColor else containerColor,
             animationSpec = tween(durationMillis = 700)
         )
     }
@@ -106,9 +108,7 @@ fun BottomBarItem(bottomItem: BottomBarItem, isSelected: Boolean, modifier: Modi
         if (isSelected)
             Text(
                 text = stringResource(bottomItem.titleId),
-                color = Color.White,
-                fontSize = 14.sp,
-                fontWeight = FontWeight.Medium,
+                style = captionStyle(),
                 modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically)
             )
 

@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.numbersapp.ui.theme.container
+import com.example.numbersapp.ui.theme.CustomTheme
 
 @Composable
 fun <T> DynamicItemContainer(
@@ -25,7 +25,7 @@ fun <T> DynamicItemContainer(
             .wrapContentHeight()
             .fillMaxWidth()
             .clip(CircleShape)
-            .background(container),
+            .background(CustomTheme.colors.container),
     ) {
         items.forEach { item ->
             val isSelected = item == selectedItem
