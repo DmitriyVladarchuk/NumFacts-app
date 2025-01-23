@@ -47,7 +47,7 @@ import com.example.numbersapp.ui.views.ContainerTypeFact
 @Composable
 fun Favorite(viewModel: FavoriteViewModel = viewModel(), modifier: Modifier = Modifier) {
     Column(
-        modifier = modifier.fillMaxSize().padding(top = 32.dp)
+        modifier = modifier
     ) {
         Text(
             text = "${stringResource(R.string.favorite)} ${stringResource(R.string.fact)}",

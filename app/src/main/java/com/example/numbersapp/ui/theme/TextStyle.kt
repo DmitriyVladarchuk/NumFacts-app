@@ -31,8 +31,9 @@ fun bodyTextStyle() = TextStyle(
 
 @Composable
 fun captionStyle() = TextStyle(
-    color = Color.White,
+    color = Color.Gray,
     fontSize = 14.sp,
-    fontWeight = FontWeight.Medium
+    //fontWeight = FontWeight.Medium
 )
+
 

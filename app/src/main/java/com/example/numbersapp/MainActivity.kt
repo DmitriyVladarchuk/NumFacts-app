@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -36,13 +37,13 @@ class MainActivity : ComponentActivity() {
 
                     NavHost(navController = navController, startDestination = Routes.Home.route) {
                         composable(Routes.Home.route) {
-                            Home(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding))
+                            Home(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding).fillMaxSize().padding(top = 32.dp))
                         }
                         composable(Routes.Favorite.route) {
-                            Favorite(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding))
+                            Favorite(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding).fillMaxSize().padding(top = 32.dp))
                         }
                         composable(Routes.Settings.route) {
-                            Settings(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding))
+                            Settings(modifier = Modifier.background(CustomTheme.colors.background).padding(innerPadding).fillMaxSize().padding(top = 32.dp))
                         }
                     }
 

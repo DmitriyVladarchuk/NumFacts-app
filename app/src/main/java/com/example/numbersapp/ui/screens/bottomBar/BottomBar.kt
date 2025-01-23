@@ -109,6 +109,7 @@ fun BottomBarItem(bottomItem: BottomBarItem, isSelected: Boolean, modifier: Modi
             Text(
                 text = stringResource(bottomItem.titleId),
                 style = captionStyle(),
+                color = Color.White,
                 modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically)
             )
 

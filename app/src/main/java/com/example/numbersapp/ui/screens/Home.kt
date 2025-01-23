@@ -45,13 +45,13 @@ import com.example.numbersapp.ui.theme.current
 import com.example.numbersapp.ui.theme.subtitleStyle
 import com.example.numbersapp.ui.theme.titleStyle
 import com.example.numbersapp.ui.theme.yellow
-import com.example.numbersapp.ui.views.DynamicItemContainer
+import com.example.numbersapp.ui.views.ContainerTypeFact
 
 
 @Composable
 fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) {
     Column(
-        modifier = modifier.fillMaxSize().padding(top = 32.dp)
+        modifier = modifier
     ) {
         Text(
             text = "${stringResource(R.string.random)} ${stringResource(R.string.fact)}",
@@ -59,21 +59,12 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) 
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
 
-        DynamicItemContainer(
-            items = TypeFact.entries.toList(),
-            selectedItem = viewModel.currentTypeFact,
-            onItemSelected = { selected ->
-                viewModel.changeTypeFact(selected)
-            },
-            itemContent = { typeFact, isSelected, modifier, onItemSelected ->
-                ItemTypeFact(
-                    typeFact = typeFact,
-                    isSelected = isSelected,
-                    modifier = modifier,
-                    changeType = { onItemSelected(typeFact) }
-                )
-            }
-        )
+        ContainerTypeFact(
+            currentTypeFact = viewModel.currentTypeFact
+        ) { selected ->
+            viewModel.changeTypeFact(selected)
+        }
+
         FactHorizontalPager(
             facts = viewModel.facts,
             loadFact = { viewModel.loadNextFact() },
