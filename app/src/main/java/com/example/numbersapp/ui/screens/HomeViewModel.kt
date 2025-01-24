@@ -6,10 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.numbersapp.models.Fact
-import com.example.numbersapp.models.TypeFact
-import com.example.numbersapp.repository.DatabaseRepository
-import com.example.numbersapp.repository.FactRepository
+import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.TypeFact
+import com.example.numbersapp.data.repository.DatabaseRepository
+import com.example.numbersapp.data.repository.FactRepository
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 

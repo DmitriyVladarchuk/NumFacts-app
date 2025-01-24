@@ -1,36 +1,36 @@
-package com.example.numbersapp.repository
+package com.example.numbersapp.data.repository
 
 import android.util.Log
-import com.example.numbersapp.API.RetrofitClient
-import com.example.numbersapp.models.Fact
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.data.API.RetrofitClient
+import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.TypeFact
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.HttpException
 
-private const val TAG_FACT_REPOSITORY = "com.example.numbersapp.repository"
+private const val TAG_FACT_REPOSITORY = "com.example.numbersapp.data.repository"
 
 class FactRepository(private val retrofitClient: RetrofitClient = RetrofitClient) {
 
     suspend fun getRandomFact(typeFact: TypeFact) : Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getRandomFact(typeFact.type))
+        return responseApiFact(RetrofitClient.numbersAPI.getRandomFact(typeFact.type))
     }
 
     suspend fun getTriviaFact(number: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(number, TypeFact.TRIVIA))
+        return responseApiFact(RetrofitClient.numbersAPI.getNumberFact(number, TypeFact.TRIVIA))
     }
 
     suspend fun getDateFact(month: Int, year: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getDateFact(month, year))
+        return responseApiFact(RetrofitClient.numbersAPI.getDateFact(month, year))
     }
 
     suspend fun getYearFact(year: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(year, TypeFact.YEAR))
+        return responseApiFact(RetrofitClient.numbersAPI.getNumberFact(year, TypeFact.YEAR))
     }
 
     suspend fun getMathFact(number: Int): Fact? {
-        return responseApiFact(retrofitClient.numbersAPI.getNumberFact(number, TypeFact.MATH))
+        return responseApiFact(RetrofitClient.numbersAPI.getNumberFact(number, TypeFact.MATH))
     }
 
     private suspend fun responseApiFact(call: Call<Fact>): Fact? {
@@ -42,7 +42,10 @@ class FactRepository(private val retrofitClient: RetrofitClient = RetrofitClient
                     Log.d(TAG_FACT_REPOSITORY, fact.toString())
                     fact
                 } else {
-                    Log.d(TAG_FACT_REPOSITORY, "Response unsuccessful: ${response.errorBody()?.string()}")
+                    Log.d(
+                        TAG_FACT_REPOSITORY,
+                        "Response unsuccessful: ${response.errorBody()?.string()}"
+                    )
                     null
                 }
             } catch (e: HttpException) {

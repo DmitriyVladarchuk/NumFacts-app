@@ -1,7 +1,7 @@
-package com.example.numbersapp.database
+package com.example.numbersapp.data.local
 
 import androidx.room.TypeConverter
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.TypeFact
 import java.util.Locale
 
 class Converters {

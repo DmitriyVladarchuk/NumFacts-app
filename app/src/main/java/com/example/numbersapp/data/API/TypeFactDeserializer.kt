@@ -1,6 +1,6 @@
-package com.example.numbersapp.API
+package com.example.numbersapp.data.API
 
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.TypeFact
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement

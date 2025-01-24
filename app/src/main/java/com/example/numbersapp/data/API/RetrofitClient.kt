@@ -1,6 +1,6 @@
-package com.example.numbersapp.API
+package com.example.numbersapp.data.API
 
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.TypeFact
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient

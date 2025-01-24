@@ -1,10 +1,10 @@
-package com.example.numbersapp.database
+package com.example.numbersapp.data.local
 
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.numbersapp.models.Fact
+import com.example.numbersapp.domain.models.Fact
 import kotlinx.coroutines.flow.Flow
 
 @Dao

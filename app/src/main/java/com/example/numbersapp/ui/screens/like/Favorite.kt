@@ -36,8 +36,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbersapp.R
-import com.example.numbersapp.models.Fact
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.TypeFact
 import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.titleStyle
 import com.example.numbersapp.ui.theme.yellow

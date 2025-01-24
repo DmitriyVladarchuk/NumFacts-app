@@ -2,7 +2,7 @@ package com.example.numbersapp.ui.views
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.TypeFact
 
 @Composable
 fun ContainerTypeFact(currentTypeFact: TypeFact = TypeFact.MATH, changeTypeFact: (selected: TypeFact) -> Unit) {

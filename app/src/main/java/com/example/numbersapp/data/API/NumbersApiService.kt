@@ -1,7 +1,7 @@
-package com.example.numbersapp.API
+package com.example.numbersapp.data.API
 
-import com.example.numbersapp.models.Fact
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.TypeFact
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

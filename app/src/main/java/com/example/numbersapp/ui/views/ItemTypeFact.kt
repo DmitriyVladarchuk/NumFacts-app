@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.numbersapp.Utils.Utils
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.TypeFact
 import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.current
 

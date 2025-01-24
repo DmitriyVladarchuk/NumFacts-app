@@ -1,11 +1,11 @@
-package com.example.numbersapp.database
+package com.example.numbersapp.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.example.numbersapp.models.Fact
+import com.example.numbersapp.domain.models.Fact
 
 @Database(
     entities = [Fact::class],
@@ -20,7 +20,7 @@ abstract class LocalDB : RoomDatabase() {
         @Volatile
         private var INSTANCE: LocalDB? = null
 
-        fun getBataBase(context: Context): LocalDB{
+        fun getBataBase(context: Context): LocalDB {
             return INSTANCE ?: synchronized(this){
                 buildDataBase(context).also{ INSTANCE = it }
             }

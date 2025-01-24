@@ -13,6 +13,7 @@ okHttp3 = "4.9.3"
 navigation = "2.8.5"
 roomRuntime = "2.6.1"
 ksp = "2.1.0-1.0.29"
+appcompoat = "1.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -37,6 +38,7 @@ navigation-compose = { module = "androidx.navigation:navigation-compose", versio
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomRuntime" }
 androidx-room-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomRuntime" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompoat" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,7 +1,7 @@
 package com.example.numbersapp.Utils
 
 import com.example.numbersapp.R
-import com.example.numbersapp.models.TypeFact
+import com.example.numbersapp.domain.models.TypeFact
 
 class Utils {
     companion object {

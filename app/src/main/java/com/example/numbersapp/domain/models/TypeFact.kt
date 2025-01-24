@@ -1,4 +1,4 @@
-package com.example.numbersapp.models
+package com.example.numbersapp.domain.models
 
 enum class TypeFact(val type: String) {
     MATH("math"),

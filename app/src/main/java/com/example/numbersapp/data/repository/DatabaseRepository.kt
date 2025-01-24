@@ -1,9 +1,9 @@
-package com.example.numbersapp.repository
+package com.example.numbersapp.data.repository
 
 import com.example.numbersapp.App
-import com.example.numbersapp.database.FactDAO
-import com.example.numbersapp.database.LocalDB
-import com.example.numbersapp.models.Fact
+import com.example.numbersapp.data.local.FactDAO
+import com.example.numbersapp.data.local.LocalDB
+import com.example.numbersapp.domain.models.Fact
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

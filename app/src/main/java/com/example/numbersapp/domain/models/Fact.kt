@@ -1,4 +1,4 @@
-package com.example.numbersapp.models
+package com.example.numbersapp.domain.models
 
 import androidx.room.Entity
 import androidx.room.Ignore
