@@ -1,7 +1,6 @@
 package com.example.numbersapp
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +16,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.numbersapp.ui.screens.Home
 import com.example.numbersapp.ui.screens.Routes
 import com.example.numbersapp.ui.screens.bottomBar.BottomBar
-import com.example.numbersapp.ui.screens.like.Favorite
+import com.example.numbersapp.ui.screens.favorite.Favorite
 import com.example.numbersapp.ui.screens.settings.Settings
 import com.example.numbersapp.ui.theme.CustomNumbersAppTheme
 import com.example.numbersapp.ui.theme.CustomTheme

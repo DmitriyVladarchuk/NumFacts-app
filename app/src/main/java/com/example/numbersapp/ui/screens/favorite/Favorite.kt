@@ -1,4 +1,4 @@
-package com.example.numbersapp.ui.screens.like
+package com.example.numbersapp.ui.screens.favorite
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -30,7 +30,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -93,7 +92,11 @@ private fun ListFavoriteFacts(favoriteFacts: List<Fact>, changeTypeFact: (select
             itemsIndexed(favoriteFacts) { index, fact ->
                 FavoriteItem(fact) { deleteItem(fact) }
                 if (index < favoriteFacts.size - 1 )
-                    HorizontalDivider(color = Color.Black, thickness = 1.dp)
+                    HorizontalDivider(
+                        color = Color.Black,
+                        thickness = 2.dp,
+                        modifier = Modifier.padding(horizontal = 16.dp)
+                    )
             }
         }
     }
@@ -106,7 +109,6 @@ private fun FavoriteItem(fact: Fact, deleteItem: () -> Unit) {
 
     if (showDialog)
         AlertDialogWarning(
-            textInfo = "",
             onDismissRequest = { showDialog = false },
             onConfirm = {
                 deleteItem()
@@ -124,6 +126,7 @@ private fun FavoriteItem(fact: Fact, deleteItem: () -> Unit) {
         Text(
             text = fact.text,
             fontSize = 22.sp,
+            color = CustomTheme.colors.content,
             maxLines = if (expanded) Int.MAX_VALUE else 3,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier

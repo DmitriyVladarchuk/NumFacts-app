@@ -1,4 +1,4 @@
-package com.example.numbersapp.ui.screens.like
+package com.example.numbersapp.ui.screens.favorite
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf

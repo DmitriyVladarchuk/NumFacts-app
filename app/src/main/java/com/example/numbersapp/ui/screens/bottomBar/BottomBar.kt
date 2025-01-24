@@ -102,7 +102,7 @@ fun BottomBarItem(bottomItem: BottomBarItem, isSelected: Boolean, modifier: Modi
         Icon(
             imageVector = bottomItem.icon,
             modifier = Modifier.size(32.dp),
-            tint = if (isSelected) Color.White else Color.Black,
+            tint = if (isSelected) Color.White else CustomTheme.colors.content,
             contentDescription = ""
         )
         if (isSelected)

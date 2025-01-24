@@ -11,6 +11,12 @@
     <string name="setting">Setting</string>
     <string name="favorite">Favorite</string>
 
+    <string name="title_dialog_warning">Confirmation of the action</string> /* Подтверждение действия */
+    <string name="body_dialog_warning">Do you really want to delete this fact?</string> /* Вы действительно хотите удалить этот факт? */
+
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+
     <string name="theme">Theme</string>
     <string name="dark_mode">Dark Theme</string>
 

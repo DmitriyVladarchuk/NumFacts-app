@@ -52,7 +52,7 @@ fun ItemTypeFact(typeFact: TypeFact, isSelected: Boolean, modifier: Modifier = M
     ) {
         Text(
             text = stringResource(Utils.getStringResourceIdForFactType(typeFact)),
-            color = if (isSelected) Color.White else Color.Black,
+            color = if (isSelected) Color.White else CustomTheme.colors.content,
             fontSize = 14.sp,
             fontWeight = FontWeight.Medium,
             modifier = Modifier.align(Alignment.Center)
