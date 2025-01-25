@@ -1,8 +1,5 @@
-package com.example.numbersapp.ui.screens
+package com.example.numbersapp.ui.screens.home
 
-import androidx.compose.animation.Animatable
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -15,30 +12,24 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.sharp.Star
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbersapp.R
 import com.example.numbersapp.Utils.Utils
 import com.example.numbersapp.domain.models.Fact
-import com.example.numbersapp.domain.models.TypeFact
 import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.bodyTextStyle
 import com.example.numbersapp.ui.theme.current
@@ -77,17 +68,35 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) 
 private fun FactHorizontalPager(facts: List<Fact?>, loadFact: () -> Unit, clickableItem: (fact: Fact) -> Unit) {
     val pagerState = rememberPagerState(pageCount = { facts.size })
 
-    HorizontalPager(
-        state = pagerState,
-        beyondViewportPageCount = 2,
-    ) { page ->
-        if (page == facts.size - 1) {
-            loadFact()
+    if (facts.isEmpty()) {
+        Box(
+            modifier = Modifier
+                .padding(start = 20.dp, end = 20.dp, bottom = 20.dp)
+                .fillMaxWidth()
+                .fillMaxHeight(0.7f)
+                .background(
+                    color = CustomTheme.colors.container,
+                    shape = RoundedCornerShape(20.dp)
+                ),
+            contentAlignment = Alignment.Center
+        ) {
+            CircularProgressIndicator(color = current)
         }
+    } else {
+        HorizontalPager(
+            state = pagerState,
+            beyondViewportPageCount = 2,
+        ) { page ->
+            if (page == facts.size - 1) {
+                loadFact()
+            }
 
-        facts.getOrNull(page)?.let { ItemFact(it) {
-            clickableItem(it)
-        } }
+            facts.getOrNull(page)?.let { fact ->
+                ItemFact(fact) {
+                    clickableItem(fact)
+                }
+            }
+        }
     }
 }
 
@@ -134,39 +143,5 @@ private fun ItemFact(fact: Fact, clickableItem: () -> Unit) {
                 modifier = Modifier.fillMaxSize().padding(top = 42.dp)
             )
         }
-    }
-}
-
-@Composable
-private fun ItemTypeFact(typeFact: TypeFact, isSelected: Boolean, modifier: Modifier, changeType: () -> Unit) {
-    val currentColor = current
-    val containerColor = CustomTheme.colors.container
-
-    val animateColor = remember { Animatable(containerColor) }
-
-    LaunchedEffect(isSelected) {
-        animateColor.animateTo(
-            targetValue = if (isSelected) currentColor else containerColor,
-            animationSpec = tween(durationMillis = 700)
-        )
-    }
-
-    Box(
-        modifier = modifier
-            .clip(CircleShape)
-            .background(
-                animateColor.value
-            )
-            .clickable { changeType() }
-            .padding(16.dp)
-            .animateContentSize()
-    ) {
-        Text(
-            text = stringResource(Utils.getStringResourceIdForFactType(typeFact)),
-            color = if (isSelected) Color.White else Color.Black,
-            fontSize = 14.sp,
-            fontWeight = FontWeight.Medium,
-            modifier = Modifier.align(Alignment.Center)
-        )
     }
 }

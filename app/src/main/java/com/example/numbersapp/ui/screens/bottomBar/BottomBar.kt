@@ -1,8 +1,11 @@
 package com.example.numbersapp.ui.screens.bottomBar
 
 import androidx.compose.animation.Animatable
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -105,13 +108,19 @@ fun BottomBarItem(bottomItem: BottomBarItem, isSelected: Boolean, modifier: Modi
             tint = if (isSelected) Color.White else CustomTheme.colors.content,
             contentDescription = ""
         )
-        if (isSelected)
+
+        AnimatedVisibility(
+            visible = isSelected,
+            modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically),
+            enter = expandHorizontally(animationSpec = tween(durationMillis = 700)),
+            exit = shrinkHorizontally(animationSpec = tween(durationMillis = 700))
+        ) {
             Text(
                 text = stringResource(bottomItem.titleId),
                 style = captionStyle(),
                 color = Color.White,
-                modifier = Modifier.padding(start = 8.dp).align(Alignment.CenterVertically)
             )
+        }
 
     }
 }

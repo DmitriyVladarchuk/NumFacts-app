@@ -1,4 +1,4 @@
-package com.example.numbersapp.ui.screens
+package com.example.numbersapp.ui.screens.home
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf

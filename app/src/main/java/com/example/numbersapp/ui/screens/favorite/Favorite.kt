@@ -93,7 +93,7 @@ private fun ListFavoriteFacts(favoriteFacts: List<Fact>, changeTypeFact: (select
                 FavoriteItem(fact) { deleteItem(fact) }
                 if (index < favoriteFacts.size - 1 )
                     HorizontalDivider(
-                        color = Color.Black,
+                        color = CustomTheme.colors.background,
                         thickness = 2.dp,
                         modifier = Modifier.padding(horizontal = 16.dp)
                     )
