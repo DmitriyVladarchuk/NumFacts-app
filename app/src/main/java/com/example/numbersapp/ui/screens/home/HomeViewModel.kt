@@ -6,11 +6,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.numbersapp.domain.models.Fact
-import com.example.numbersapp.domain.models.TypeFact
 import com.example.numbersapp.data.repository.DatabaseRepository
 import com.example.numbersapp.data.repository.FactRepository
-import kotlinx.coroutines.flow.first
+import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.TypeFact
 import kotlinx.coroutines.launch
 
 class HomeViewModel(
@@ -41,9 +40,7 @@ class HomeViewModel(
         viewModelScope.launch {
             val nextFact = repository.getRandomFact(_currentTypeFact)
             nextFact?.let {
-                it.isSaved = databaseRepository.getAllFacts().first().any { savedFact ->
-                    savedFact.text == it.text
-                }
+                it.isSaved = databaseRepository.isFactSaved(it.text)
                 _facts.add(it)
             }
         }

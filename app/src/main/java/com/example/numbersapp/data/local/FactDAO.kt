@@ -16,6 +16,9 @@ interface FactDAO {
     @Query("SELECT * FROM facts WHERE text=:value")
     fun getFactFromText(value: String): Flow<Fact>
 
+    @Query("SELECT COUNT(*) FROM facts WHERE text=:value")
+    suspend fun getFactCountByText(value: String): Int
+
     @Insert(entity = Fact::class)
     fun saveFact(fact: Fact)
 
