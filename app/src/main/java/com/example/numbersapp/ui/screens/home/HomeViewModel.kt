@@ -6,15 +6,18 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.numbersapp.data.repository.DatabaseRepository
-import com.example.numbersapp.data.repository.FactRepository
 import com.example.numbersapp.domain.models.Fact
 import com.example.numbersapp.domain.models.TypeFact
+import com.example.numbersapp.domain.repository.DatabaseRepository
+import com.example.numbersapp.domain.repository.FactRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class HomeViewModel(
-    private val repository: FactRepository = FactRepository(),
-    private val databaseRepository: DatabaseRepository = DatabaseRepository()
+@HiltViewModel
+class HomeViewModel @Inject constructor(
+    private val repository: FactRepository,
+    private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
 
     private val _facts = mutableStateListOf<Fact?>()

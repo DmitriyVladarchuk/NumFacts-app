@@ -30,6 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.numbersapp.R
 import com.example.numbersapp.ui.screens.Routes
 import com.example.numbersapp.ui.theme.CustomTheme
@@ -58,7 +59,8 @@ fun BottomBar(navController: NavController) {
         items = bottomBarItems,
         selectedItem = bottomBarItems.find { it.route == currentRoute.value } ?: bottomBarItems[0],
         onItemSelected = { selected ->
-            navController.navigate(selected.route) {
+            navController.navigate(selected.route)
+            {
                 popUpTo(navController.graph.startDestinationId) {
                     saveState = true
                 }

@@ -1,24 +1,24 @@
 package com.example.numbersapp.data.repository
 
-import com.example.numbersapp.App
 import com.example.numbersapp.data.local.FactDAO
-import com.example.numbersapp.data.local.LocalDB
 import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.repository.DatabaseRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class DatabaseRepository(
-    private val factDAO: FactDAO = LocalDB.getBataBase(App.context).dao(),
+class DatabaseRepositoryImpl @Inject constructor(
+    private val factDAO: FactDAO,
     private val dispatcher: CoroutineDispatcher = Dispatchers.IO
-) {
+) : DatabaseRepository{
 
-    fun getAllFacts(): Flow<List<Fact>> = factDAO.getAllFacts()
+    override fun getAllFacts(): Flow<List<Fact>> = factDAO.getAllFacts()
 
-    fun getFactFromText(value: String): Flow<Fact> = factDAO.getFactFromText(value)
+    override fun getFactFromText(value: String): Flow<Fact> = factDAO.getFactFromText(value)
 
-    suspend fun isFactSaved(text: String): Boolean {
+    override suspend fun isFactSaved(text: String): Boolean {
         return withContext(dispatcher) {
             try {
                 val count = factDAO.getFactCountByText(text)
@@ -29,7 +29,7 @@ class DatabaseRepository(
         }
     }
 
-    suspend fun saveFact(fact: Fact) {
+    override suspend fun saveFact(fact: Fact) {
         withContext(dispatcher) {
             try {
                 factDAO.saveFact(fact)
@@ -39,7 +39,7 @@ class DatabaseRepository(
         }
     }
 
-    suspend fun deleteFact(fact: Fact) {
+    override suspend fun deleteFact(fact: Fact) {
         withContext(dispatcher) {
             try {
                 factDAO.deleteFact(fact)
@@ -49,7 +49,7 @@ class DatabaseRepository(
         }
     }
 
-    suspend fun clearFacts() {
+    override suspend fun clearFacts() {
         withContext(dispatcher) {
             try {
                 factDAO.clearFacts()

@@ -1,10 +1,14 @@
 package com.example.numbersapp.data.local
 
+import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
+import javax.inject.Inject
 
-class PreferenceDataSource(context: Context) {
+class PreferenceDataSource @Inject constructor(
+    private val appContext: Application
+) {
 
     companion object {
         private const val PREFS_NAME = "app_references"
@@ -12,7 +16,7 @@ class PreferenceDataSource(context: Context) {
     }
 
     private val sharedPreferences: SharedPreferences =
-        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+        appContext.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
 
     fun isDarkModeEnabled(): Boolean {
         return sharedPreferences.getBoolean(KEY_DARK_MODE, isSystemDarkModeEnabled())

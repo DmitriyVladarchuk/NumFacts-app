@@ -8,12 +8,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.numbersapp.domain.models.Fact
 import com.example.numbersapp.domain.models.TypeFact
-import com.example.numbersapp.data.repository.DatabaseRepository
+import com.example.numbersapp.domain.repository.DatabaseRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class FavoriteViewModel(
-    private val databaseRepository: DatabaseRepository = DatabaseRepository()
+@HiltViewModel
+class FavoriteViewModel @Inject constructor(
+    private val databaseRepository: DatabaseRepository
 ) : ViewModel() {
 
     private val _favoriteFacts: Flow<List<Fact>> = databaseRepository.getAllFacts()

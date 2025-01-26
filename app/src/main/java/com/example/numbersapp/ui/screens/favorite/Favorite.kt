@@ -28,12 +28,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.numbersapp.R
 import com.example.numbersapp.domain.models.Fact
 import com.example.numbersapp.domain.models.TypeFact
@@ -44,7 +43,7 @@ import com.example.numbersapp.ui.views.AlertDialogWarning
 import com.example.numbersapp.ui.views.ContainerTypeFact
 
 @Composable
-fun Favorite(viewModel: FavoriteViewModel = viewModel(), modifier: Modifier = Modifier) {
+fun Favorite(viewModel: FavoriteViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
     ) {

@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.numbersapp.R
 import com.example.numbersapp.Utils.Utils
 import com.example.numbersapp.domain.models.Fact
@@ -40,7 +40,7 @@ import com.example.numbersapp.ui.views.ContainerTypeFact
 
 
 @Composable
-fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = viewModel()) {
+fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = hiltViewModel()) {
     Column(
         modifier = modifier
     ) {

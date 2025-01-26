@@ -19,6 +19,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.example.numbersapp.R
 import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.captionStyle

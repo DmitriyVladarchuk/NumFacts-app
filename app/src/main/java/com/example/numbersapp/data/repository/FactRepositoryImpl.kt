@@ -1,36 +1,40 @@
 package com.example.numbersapp.data.repository
 
 import android.util.Log
-import com.example.numbersapp.data.API.RetrofitClient
+import com.example.numbersapp.data.API.NumbersApiService
 import com.example.numbersapp.domain.models.Fact
 import com.example.numbersapp.domain.models.TypeFact
+import com.example.numbersapp.domain.repository.FactRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.Call
 import retrofit2.HttpException
+import javax.inject.Inject
 
 private const val TAG_FACT_REPOSITORY = "com.example.numbersapp.data.repository"
 
-class FactRepository(private val retrofitClient: RetrofitClient = RetrofitClient) {
+class FactRepositoryImpl @Inject constructor(
+    private val numbersApiService: NumbersApiService
+) : FactRepository {
 
-    suspend fun getRandomFact(typeFact: TypeFact) : Fact? {
-        return responseApiFact(RetrofitClient.numbersAPI.getRandomFact(typeFact.type))
+    override suspend fun getRandomFact(typeFact: TypeFact) : Fact? {
+        return responseApiFact(numbersApiService.getRandomFact(typeFact.type))
     }
 
     suspend fun getTriviaFact(number: Int): Fact? {
-        return responseApiFact(RetrofitClient.numbersAPI.getNumberFact(number, TypeFact.TRIVIA))
+        return responseApiFact(numbersApiService.getNumberFact(number, TypeFact.TRIVIA))
     }
 
     suspend fun getDateFact(month: Int, year: Int): Fact? {
-        return responseApiFact(RetrofitClient.numbersAPI.getDateFact(month, year))
+        return responseApiFact(numbersApiService.getDateFact(month, year))
     }
 
     suspend fun getYearFact(year: Int): Fact? {
-        return responseApiFact(RetrofitClient.numbersAPI.getNumberFact(year, TypeFact.YEAR))
+        return responseApiFact(numbersApiService.getNumberFact(year, TypeFact.YEAR))
     }
 
     suspend fun getMathFact(number: Int): Fact? {
-        return responseApiFact(RetrofitClient.numbersAPI.getNumberFact(number, TypeFact.MATH))
+        return responseApiFact(numbersApiService.getNumberFact(number, TypeFact.MATH))
     }
 
     private suspend fun responseApiFact(call: Call<Fact>): Fact? {

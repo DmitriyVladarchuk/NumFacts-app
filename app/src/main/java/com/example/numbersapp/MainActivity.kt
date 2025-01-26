@@ -23,7 +23,9 @@ import com.example.numbersapp.ui.screens.favorite.Favorite
 import com.example.numbersapp.ui.screens.settings.Settings
 import com.example.numbersapp.ui.theme.CustomNumbersAppTheme
 import com.example.numbersapp.ui.theme.CustomTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
