@@ -34,9 +34,9 @@ import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.bodyTextStyle
 import com.example.numbersapp.ui.theme.current
 import com.example.numbersapp.ui.theme.subtitleStyle
-import com.example.numbersapp.ui.theme.titleStyle
 import com.example.numbersapp.ui.theme.yellow
 import com.example.numbersapp.ui.views.ContainerTypeFact
+import com.example.numbersapp.ui.views.TitleTextInfo
 
 
 @Composable
@@ -44,11 +44,7 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = hiltViewModel
     Column(
         modifier = modifier
     ) {
-        Text(
-            text = "${stringResource(R.string.random)} ${stringResource(R.string.fact)}",
-            style = titleStyle(),
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
+        TitleTextInfo("${stringResource(R.string.random)} ${stringResource(R.string.fact)}")
 
         ContainerTypeFact(
             currentTypeFact = viewModel.currentTypeFact

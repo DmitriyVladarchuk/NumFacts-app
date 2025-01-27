@@ -30,6 +30,7 @@ import com.example.numbersapp.ui.theme.captionStyle
 import com.example.numbersapp.ui.theme.current
 import com.example.numbersapp.ui.theme.subtitleStyle
 import com.example.numbersapp.ui.theme.titleStyle
+import com.example.numbersapp.ui.views.TitleTextInfo
 
 @Composable
 fun Settings(navController: NavController, viewModel: SettingsViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
@@ -37,11 +38,8 @@ fun Settings(navController: NavController, viewModel: SettingsViewModel = hiltVi
     val context = LocalContext.current
 
     Column(modifier = modifier) {
-        Text(
-            text = stringResource(R.string.setting),
-            style = titleStyle(),
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
+
+        TitleTextInfo(stringResource(R.string.setting))
 
         Card(
             colors = CardDefaults.cardColors(containerColor = CustomTheme.colors.container),

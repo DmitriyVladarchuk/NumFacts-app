@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Theme.NumbersApp.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/current</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/logo</item>
+        <item name="postSplashScreenTheme">@style/Theme.NumbersApp</item>
+    </style>
+
     <style name="Theme.NumbersApp" parent="Theme.AppCompat.Light.NoActionBar" />
 </resources>

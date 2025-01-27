@@ -41,17 +41,14 @@ import com.example.numbersapp.ui.theme.titleStyle
 import com.example.numbersapp.ui.theme.yellow
 import com.example.numbersapp.ui.views.AlertDialogWarning
 import com.example.numbersapp.ui.views.ContainerTypeFact
+import com.example.numbersapp.ui.views.TitleTextInfo
 
 @Composable
 fun Favorite(viewModel: FavoriteViewModel = hiltViewModel(), modifier: Modifier = Modifier) {
     Column(
         modifier = modifier
     ) {
-        Text(
-            text = "${stringResource(R.string.favorite)} ${stringResource(R.string.fact)}",
-            style = titleStyle(),
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
+        TitleTextInfo("${stringResource(R.string.favorite)} ${stringResource(R.string.fact)}")
         ContainerTypeFact(
             currentTypeFact = viewModel.currentTypeFact
         ) { selected ->
