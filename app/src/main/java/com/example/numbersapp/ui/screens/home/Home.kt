@@ -30,12 +30,15 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.example.numbersapp.R
 import com.example.numbersapp.Utils.Utils
 import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.FactSource
 import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.bodyTextStyle
 import com.example.numbersapp.ui.theme.current
 import com.example.numbersapp.ui.theme.subtitleStyle
 import com.example.numbersapp.ui.theme.yellow
 import com.example.numbersapp.ui.views.ContainerTypeFact
+import com.example.numbersapp.ui.views.DynamicItemContainer
+import com.example.numbersapp.ui.views.ItemTypeFact
 import com.example.numbersapp.ui.views.TitleTextInfo
 
 
@@ -44,7 +47,24 @@ fun Home(modifier: Modifier = Modifier, viewModel: HomeViewModel = hiltViewModel
     Column(
         modifier = modifier
     ) {
-        TitleTextInfo("${stringResource(R.string.random)} ${stringResource(R.string.fact)}")
+        TitleTextInfo(stringResource(R.string.facts))
+
+        DynamicItemContainer(
+            items = FactSource.entries.toList(),
+            selectedItem = viewModel.currentFactSource,
+            modifier = Modifier.padding(start = 20.dp, top = 16.dp, end = 20.dp),
+            onItemSelected = { selected ->
+                viewModel.changeFactSource(selected)
+            },
+            itemContent = { typeFact, isSelected, modifier, onItemSelected ->
+                ItemTypeFact(
+                    typeFact = typeFact,
+                    isSelected = isSelected,
+                    modifier = modifier,
+                    changeType = { onItemSelected(typeFact) }
+                )
+            }
+        )
 
         ContainerTypeFact(
             currentTypeFact = viewModel.currentTypeFact

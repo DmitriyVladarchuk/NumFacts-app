@@ -17,11 +17,12 @@ fun <T> DynamicItemContainer(
     items: List<T>,
     selectedItem: T,
     onItemSelected: (T) -> Unit,
+    modifier: Modifier = Modifier,
     itemContent: @Composable (T, Boolean, Modifier, (T) -> Unit) -> Unit
 ) {
     Row(
-        modifier = Modifier
-            .padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 20.dp)
+        modifier = modifier
+            //.padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 20.dp)
             .wrapContentHeight()
             .fillMaxWidth()
             .clip(CircleShape)

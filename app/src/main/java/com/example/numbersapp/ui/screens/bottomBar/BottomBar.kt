@@ -58,9 +58,9 @@ fun BottomBar(navController: NavController) {
     DynamicItemContainer(
         items = bottomBarItems,
         selectedItem = bottomBarItems.find { it.route == currentRoute.value } ?: bottomBarItems[0],
+        modifier = Modifier.padding(start = 20.dp, top = 16.dp, end = 20.dp, bottom = 20.dp),
         onItemSelected = { selected ->
-            navController.navigate(selected.route)
-            {
+            navController.navigate(selected.route) {
                 popUpTo(navController.graph.startDestinationId) {
                     saveState = true
                 }

@@ -2,10 +2,12 @@
     <string name="app_name">NumFacts</string>
     <string name="random">Random</string>
     <string name="fact">Fact</string>
+    <string name="facts">Facts</string>
     <string name="math">Math</string>
     <string name="trivia">Trivia</string>
     <string name="date">Date</string>
     <string name="year">Year</string>
+    <string name="user">User </string>
 
     <string name="home">Home</string>
     <string name="setting">Settings</string>

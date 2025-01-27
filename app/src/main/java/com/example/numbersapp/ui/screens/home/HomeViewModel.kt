@@ -7,6 +7,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.numbersapp.domain.models.Fact
+import com.example.numbersapp.domain.models.FactSource
 import com.example.numbersapp.domain.models.TypeFact
 import com.example.numbersapp.domain.repository.DatabaseRepository
 import com.example.numbersapp.domain.repository.FactRepository
@@ -26,16 +27,28 @@ class HomeViewModel @Inject constructor(
     private var _currentTypeFact by mutableStateOf(TypeFact.MATH)
     val currentTypeFact get() = _currentTypeFact
 
+    private var _currentFactSource by mutableStateOf(FactSource.RANDOM)
+    val  currentFactSource get() = _currentFactSource
 
     init {
         loadNextFact()
+    }
+
+    fun changeFactSource(factSource: FactSource) {
+        if (factSource != currentFactSource) {
+            _facts.clear()
+            _currentFactSource = factSource
+            if (factSource == FactSource.RANDOM)
+                loadNextFact()
+        }
     }
 
     fun changeTypeFact(typeFact: TypeFact) {
         if (typeFact != _currentTypeFact) {
             _facts.clear()
             _currentTypeFact = typeFact
-            loadNextFact()
+            if (_currentFactSource == FactSource.RANDOM)
+                loadNextFact()
         }
     }
 
