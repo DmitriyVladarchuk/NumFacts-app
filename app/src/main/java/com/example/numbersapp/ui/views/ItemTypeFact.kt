@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.numbersapp.Utils.Utils
 import com.example.numbersapp.domain.models.FactType
 import com.example.numbersapp.domain.models.TypeFact
+import com.example.numbersapp.ui.theme.CustomNumbersAppTheme
 import com.example.numbersapp.ui.theme.CustomTheme
 import com.example.numbersapp.ui.theme.current
 
@@ -64,8 +65,10 @@ fun ItemTypeFact(typeFact: FactType, isSelected: Boolean, modifier: Modifier = M
 @Preview
 @Composable
 private fun PreviewItemTypeFact() {
-    ItemTypeFact(
-        typeFact = TypeFact.MATH,
-        isSelected = true,
-    ) { }
+    CustomNumbersAppTheme {
+        ItemTypeFact(
+            typeFact = TypeFact.MATH,
+            isSelected = true,
+        ) { }
+    }
 }

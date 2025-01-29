@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.numbersapp.domain.models.TypeFact
+import com.example.numbersapp.ui.theme.CustomNumbersAppTheme
 
 @Composable
 fun ContainerTypeFact(currentTypeFact: TypeFact = TypeFact.MATH, changeTypeFact: (selected: TypeFact) -> Unit) {
@@ -30,5 +31,7 @@ fun ContainerTypeFact(currentTypeFact: TypeFact = TypeFact.MATH, changeTypeFact:
 @Preview
 @Composable
 private fun PreviewContainerTypeFact() {
-    ContainerTypeFact() { }
+    CustomNumbersAppTheme {
+        ContainerTypeFact() { }
+    }
 }
