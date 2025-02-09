@@ -22,7 +22,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providerOkHttpClient(): OkHttpClient {
+    fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
@@ -32,7 +32,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providerGson(): Gson {
+    fun provideGson(): Gson {
         return GsonBuilder()
             .registerTypeAdapter(TypeFact::class.java, TypeFactDeserializer())
             .create()
@@ -40,7 +40,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providerRetrofit(client: OkHttpClient, gson: Gson): Retrofit {
+    fun provideRetrofit(client: OkHttpClient, gson: Gson): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
@@ -50,7 +50,7 @@ object RetrofitModule {
 
     @Provides
     @Singleton
-    fun providerNumbersApiService(retrofit: Retrofit): NumbersApiService {
+    fun provideNumbersApiService(retrofit: Retrofit): NumbersApiService {
         return retrofit.create(NumbersApiService::class.java)
     }
 

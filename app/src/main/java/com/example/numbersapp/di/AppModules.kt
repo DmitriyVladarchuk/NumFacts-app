@@ -23,31 +23,31 @@ object AppModules {
 
     @Provides
     @Singleton
-    fun  providerFactDAO(app: Application): FactDAO {
+    fun  provideFactDAO(app: Application): FactDAO {
         return LocalDB.getBataBase(app).dao()
     }
 
     @Provides
     @Singleton
-    fun providerPreferenceDataSource(app: Application): PreferenceDataSource {
+    fun providePreferenceDataSource(app: Application): PreferenceDataSource {
         return PreferenceDataSource(app)
     }
 
     @Provides
     @Singleton
-    fun providerFactRepository(numbersApiService: NumbersApiService): FactRepository {
+    fun provideFactRepository(numbersApiService: NumbersApiService): FactRepository {
         return FactRepositoryImpl(numbersApiService)
     }
 
     @Provides
     @Singleton
-    fun providerDataBaseRepository(dao: FactDAO): DatabaseRepository {
+    fun provideDataBaseRepository(dao: FactDAO): DatabaseRepository {
         return DatabaseRepositoryImpl(dao)
     }
 
     @Provides
     @Singleton
-    fun providerSettingsRepository(dataSource: PreferenceDataSource): SettingsRepository {
+    fun provideSettingsRepository(dataSource: PreferenceDataSource): SettingsRepository {
         return SettingsRepositoryImpl(dataSource)
     }
 }
