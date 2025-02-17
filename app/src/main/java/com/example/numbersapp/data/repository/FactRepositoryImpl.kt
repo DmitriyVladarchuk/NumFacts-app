@@ -21,16 +21,16 @@ class FactRepositoryImpl @Inject constructor(
         return responseApiFact(numbersApiService.getRandomFact(typeFact.type))
     }
 
-    override suspend fun getUserFact(number: Int, typeFact: TypeFact): Fact {
+    override suspend fun getUserFact(number: Int, typeFact: TypeFact): Fact? {
         if (typeFact != TypeFact.DATE)
-            return responseApiFact(numbersApiService.getNumberFact(number, typeFact))!!
+            return responseApiFact(numbersApiService.getNumberFact(number, typeFact.type))
         else
             throw IllegalArgumentException("the wrong type of fact: $typeFact")
     }
 
-    override suspend fun getUserFact(month: Int, year: Int, typeFact: TypeFact): Fact {
+    override suspend fun getUserFact(month: Int, year: Int, typeFact: TypeFact): Fact? {
         if (typeFact == TypeFact.DATE) {
-            return responseApiFact(numbersApiService.getDateFact(month, year))!!
+            return responseApiFact(numbersApiService.getDateFact(month, year))
         } else {
             throw IllegalArgumentException("the wrong type of fact: $typeFact")
         }

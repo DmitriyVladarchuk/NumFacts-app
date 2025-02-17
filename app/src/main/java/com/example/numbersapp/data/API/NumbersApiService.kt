@@ -11,7 +11,7 @@ interface NumbersApiService {
     @GET("/{number}/{type}?json")
     fun getNumberFact(
         @Path("number") number: Int,
-        @Path("type") type: TypeFact,
+        @Path("type") type: String,
     ) : Call<Fact>
 
     @GET("/{mouth}/{year}/{type}?json")

@@ -13,6 +13,9 @@
     <string name="setting">Settings</string>
     <string name="favorite">Favorite</string>
 
+    <string name="search">Search</string>
+    <string name="month">Month</string>
+
     <string name="title_dialog_warning">Confirmation of the action</string> /* Подтверждение действия */
     <string name="body_dialog_warning">Do you really want to delete this fact?</string> /* Вы действительно хотите удалить этот факт? */
 

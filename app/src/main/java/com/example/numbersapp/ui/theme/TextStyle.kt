@@ -36,4 +36,10 @@ fun captionStyle() = TextStyle(
     //fontWeight = FontWeight.Medium
 )
 
+@Composable
+fun textFieldStyle() = TextStyle(
+    color = CustomTheme.colors.content,
+    fontSize = 24.sp,
+)
+
 

@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.numbersapp.domain.models.Fact
 import com.example.numbersapp.domain.models.FactSource
 import com.example.numbersapp.domain.models.TypeFact
@@ -56,6 +57,26 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch {
             val nextFact = repository.getRandomFact(_currentTypeFact)
             nextFact?.let {
+                it.isSaved = databaseRepository.isFactSaved(it.text)
+                _facts.add(it)
+            }
+        }
+    }
+
+    fun loadUserFact(number: Int) {
+        viewModelScope.launch {
+            val load = repository.getUserFact(number, _currentTypeFact)
+            load?.let {
+                it.isSaved = databaseRepository.isFactSaved(it.text)
+                _facts.add(it)
+            }
+        }
+    }
+
+    fun loadUserFact(month: Int, year: Int) {
+        viewModelScope.launch {
+            val load = repository.getUserFact(month, year, _currentTypeFact)
+            load?.let {
                 it.isSaved = databaseRepository.isFactSaved(it.text)
                 _facts.add(it)
             }
